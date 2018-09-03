@@ -1,0 +1,15 @@
+diff --git a/kcms/keyboard/flags.cpp b/kcms/keyboard/flags.cpp
+index e5443cfc..c479d5d2 100644
+--- a/kcms/keyboard/flags.cpp
++++ b/kcms/keyboard/flags.cpp
+@@ -219,7 +219,9 @@ void Flags::drawLabel(QPainter& painter, const QString& layoutText, bool flagSho
+ 	QFont font = painter.font();
+     QRect rect = painter.window();
+ 
+-	font.setPointSize(KFontUtils::adaptFontSize(painter, layoutText, rect.size(), rect.height()));
++    font.setFamily("Fira Sans");
++    font.setPointSize(64);
++	// font.setPointSize(KFontUtils::adaptFontSize(painter, layoutText, rect.size(), rect.height()));
+ 
+ 	// we init svg so that we get notification about theme change
+ 	getSvg();

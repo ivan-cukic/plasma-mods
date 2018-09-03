@@ -1,0 +1,36 @@
+diff --git a/applets/showActivityManager/package/contents/ui/main.qml b/applets/showActivityManager/package/contents/ui/main.qml
+index 3091555a..0271c63e 100644
+--- a/applets/showActivityManager/package/contents/ui/main.qml
++++ b/applets/showActivityManager/package/contents/ui/main.qml
+@@ -22,6 +22,8 @@ import QtQuick.Layouts 1.1
+ import org.kde.plasma.plasmoid 2.0
+ import org.kde.plasma.core 2.0 as PlasmaCore
+ 
++import org.kde.activities 0.1 as Activities
++
+ MouseArea {
+     id: iconContainer
+     property string activeSource: "Status"
+@@ -58,11 +60,17 @@ MouseArea {
+         icon: "preferences-activities"
+     }
+ 
+-    PlasmaCore.IconItem {
+-        id: icon
+-        source: "preferences-activities"
+-        width: parent.width
+-        height: parent.height
++    Repeater {
++        model: Activities.ActivityModel { }
++
++        PlasmaCore.IconItem {
++            id: icon
++            source: model.icon
++            width: parent.width
++            height: parent.height
++
++            visible: model.current
++        }
+     }
+ }
+ 

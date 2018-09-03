@@ -1,0 +1,35 @@
+diff --git a/containments/desktop/package/contents/ui/FolderView.qml b/containments/desktop/package/contents/ui/FolderView.qml
+index ad362b97..f2b7681a 100644
+--- a/containments/desktop/package/contents/ui/FolderView.qml
++++ b/containments/desktop/package/contents/ui/FolderView.qml
+@@ -766,7 +766,7 @@ FocusScope {
+ 
+                 function makeIconSize() {
+                     if (root.useListViewMode) {
+-                        return units.iconSizes.small;
++                        return units.iconSizes.large;
+                     }
+ 
+                     return FolderTools.iconSizeFromTheme(plasmoid.configuration.iconSize);
+diff --git a/containments/desktop/package/contents/ui/main.qml b/containments/desktop/package/contents/ui/main.qml
+index 4b7965ee..5da0e40e 100644
+--- a/containments/desktop/package/contents/ui/main.qml
++++ b/containments/desktop/package/contents/ui/main.qml
+@@ -73,7 +73,7 @@ FolderViewDropArea {
+     property bool isFolder: (plasmoid.pluginName == "org.kde.plasma.folder")
+     property bool isContainment: ("containmentType" in plasmoid)
+     property bool isPopup: (plasmoid.location != PlasmaCore.Types.Floating)
+-    property bool useListViewMode: isPopup && plasmoid.configuration.viewMode === 0
++    property bool useListViewMode: true // isPopup && plasmoid.configuration.viewMode === 0
+ 
+     property Component appletAppearanceComponent
+     property Item toolBox
+@@ -341,7 +341,7 @@ FolderViewDropArea {
+                 pressToMoveHelp.show();
+             }
+         }
+-        
++
+         onAvailableScreenRegionChanged: layoutTimer.restart();
+     }
+ 

@@ -1,0 +1,90 @@
+diff --git a/lookandfeel/contents/osd/OsdItem.qml b/lookandfeel/contents/osd/OsdItem.qml
+index ea3c73a1..1aff5d6c 100644
+--- a/lookandfeel/contents/osd/OsdItem.qml
++++ b/lookandfeel/contents/osd/OsdItem.qml
+@@ -21,30 +21,22 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
+ import org.kde.plasma.extras 2.0 as PlasmaExtra
+ import QtQuick.Window 2.2
+ 
+-Item {
++Row {
+     property QtObject rootItem
+-    height: Math.min(units.gridUnit * 15, Screen.desktopAvailableHeight / 5)
+-    width: height
+ 
+-    //  /--------------------\
+-    //  |      spacing       |
+-    //  | /----------------\ |
+-    //  | |                | |
+-    //  | |      icon      | |
+-    //  | |                | |
+-    //  | |                | |
+-    //  | \----------------/ |
+-    //  |      spacing       |
+-    //  | [progressbar/text] |
+-    //  |      spacing       |
+-    //  \--------------------/
++    property int iconWidth: units.iconSizes.medium
++    property int progressBarWidth: Screen.desktopAvailableWidth / 8
++
++    height: iconWidth
++    width: iconWidth + progressBarWidth + spacing
++
++    spacing: units.smallSpacing
+ 
+     PlasmaCore.IconItem {
+         id: icon
+ 
+-        height: parent.height - Math.max(progressBar.height, label.height)
+-                              - ((units.smallSpacing/2) * 3) //it's an svg
+-        width: parent.width
++        height: parent.height
++        width: iconWidth
+ 
+         source: rootItem.icon
+     }
+@@ -52,12 +44,8 @@ Item {
+     PlasmaComponents.ProgressBar {
+         id: progressBar
+ 
+-        anchors {
+-            bottom: parent.bottom
+-            left: parent.left
+-            right: parent.right
+-            margins: Math.floor(units.smallSpacing / 2)
+-        }
++        width: progressBarWidth
++        height: parent.height
+ 
+         visible: rootItem.showingProgress
+         minimumValue: 0
+@@ -65,23 +53,19 @@ Item {
+ 
+         value: Number(rootItem.osdValue)
+     }
++
+     PlasmaExtra.Heading {
+         id: label
+-        anchors {
+-            bottom: parent.bottom
+-            left: parent.left
+-            right: parent.right
+-            margins: Math.floor(units.smallSpacing / 2)
+-        }
++
++        width: progressBarWidth
++        height: parent.height
+ 
+         visible: !rootItem.showingProgress
+         text: rootItem.showingProgress ? "" : (rootItem.osdValue ? rootItem.osdValue : "")
+         horizontalAlignment: Text.AlignHCenter
+-        wrapMode: Text.WordWrap
+-        maximumLineCount: 2
++        maximumLineCount: 1
+         elide: Text.ElideLeft
+         minimumPointSize: theme.defaultFont.pointSize
+-        fontSizeMode: Text.HorizontalFit
+-        textFormat: Text.PlainText
++        fontSizeMode: Text.Fit
+     }
+ }

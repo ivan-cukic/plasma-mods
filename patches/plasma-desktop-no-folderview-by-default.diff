@@ -1,0 +1,20 @@
+diff --git a/desktoppackage/contents/defaults b/desktoppackage/contents/defaults
+index 392f8c61..22b801be 100644
+--- a/desktoppackage/contents/defaults
++++ b/desktoppackage/contents/defaults
+@@ -1,5 +1,5 @@
+ [Desktop]
+-Containment=org.kde.plasma.folder
++Containment=org.kde.desktopcontainment
+ ToolBox=org.kde.desktoptoolbox
+ RuntimePlatform=Desktop
+ 
+@@ -7,7 +7,7 @@ RuntimePlatform=Desktop
+ RightButton;NoModifier=org.kde.contextmenu
+ MidButton;NoModifier=org.kde.paste
+ wheel:Vertical;NoModifier=org.kde.switchdesktop
+- 
++
+ [Panel]
+ Containment=org.kde.panel
+ ToolBox=org.kde.paneltoolbox
